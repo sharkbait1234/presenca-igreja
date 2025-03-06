@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marcar Presença</title>
+  <style>
+    body {
+      background: url('background.jpg’) no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      transition: background 0.5s ease;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      border-radius: 10px;
+    }
+    button {
+      padding: 20px;
+      margin: 10px;
+      font-size: 1.5em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #4caf50;
+    }
+    .house-btn {
+      background-color: #444;
+      color: white;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 1.2em;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Marque sua Presença</h1>
+  <div>
+    <button class="house-btn" onclick="markPresence(‘Clã, ‘clã.jpg’)”>Clã</button>
+    <button class="house-btn" onclick="markPresence(‘Tropa, ‘tropa.jpg’)”>Tropa</button>
+    <button class="house-btn" onclick="markPresence(‘Esquadrão, ‘esquadrao.jpg’)”>Esquadrão</button>
+  </div>
+  <div id="result"></div>
+
+  <script>
+    let counts = { Clã: 0, Tropa: 0, Esquadrão: 0 };
+
+    function markPresence(house, image) {
+      counts[house]++;
+      document.body.style.backgroundImage = url('${image}');
+      displayResults();
+    }
+
+    function displayResults() {
+      const result = document.getElementById("result");
+      result.innerHTML = Presenças:<br>Clã: ${counts.Clã}<br>Tropa: ${counts.Tropa}<br>Esquadrão: ${counts.Esquadrão};
+    }
+  </script>
+</body>
+</html>
