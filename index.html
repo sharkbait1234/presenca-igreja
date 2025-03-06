@@ -14,10 +14,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       height: 100vh;
       margin: 0;
-      overflow: hidden;
+      transition: background 0.5s ease;
     }
     h1 {
       font-size: 3em;
@@ -26,72 +26,75 @@
       padding: 10px;
       border-radius: 10px;
     }
-    #result {
-      position: absolute;
+    button {
+      padding: 20px;
+      margin: 10px;
       font-size: 1.5em;
-      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+      width: 200px;
+    }
+    button:hover {
+      background-color: #4caf50;
+    }
+    .house-btn {
+      background-color: #444;
+      color: white;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 1.2em;
       background: rgba(0, 0, 0, 0.7);
+      padding: 10px;
       border-radius: 10px;
     }
-    #top, #middle, #bottom {
-      width: 100%;
-      height: 33.33%;
+    .button-container {
       position: absolute;
-      left: 0;
-    }
-    #top {
-      top: 0;
-    }
-    #middle {
-      top: 33.33%;
-    }
-    #bottom {
-      bottom: 0;
-    }
-    .section {
+      width: 100%;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
+      justify-content: space-around;
+    }
+    .top-btn {
+      position: absolute;
+      top: 25%;
+    }
+    .middle-btn {
+      position: absolute;
+      top: 50%;
+    }
+    .bottom-btn {
+      position: absolute;
+      bottom: 25%;
     }
   </style>
 </head>
 <body>
   <h1>Marque sua Presença</h1>
-  <div id="top" onclick="markPresence('Tropa', 'top')">
-    <div class="section">
-      <div id="top-result">Tropa: 0</div>
-    </div>
+  <div class="button-container">
+    <button class="house-btn top-btn" onclick="markPresence('Clã')">Clã</button>
+    <button class="house-btn middle-btn" onclick="markPresence('Tropa')">Tropa</button>
+    <button class="house-btn bottom-btn" onclick="markPresence('Esquadrão')">Esquadrão</button>
   </div>
-  <div id="middle" onclick="markPresence('Clã', 'middle')">
-    <div class="section">
-      <div id="middle-result">Clã: 0</div>
-    </div>
-  </div>
-  <div id="bottom" onclick="markPresence('Esquadrão', 'bottom')">
-    <div class="section">
-      <div id="bottom-result">Esquadrão: 0</div>
-    </div>
-  </div>
+  <div id="result"></div>
 
   <script>
-    let counts = JSON.parse(localStorage.getItem("counts")) || { Tropa: 0, Clã: 0, Esquadrão: 0 };
+    let counts = JSON.parse(localStorage.getItem("counts")) || { Clã: 0, Tropa: 0, Esquadrão: 0 };
 
-    function markPresence(house, section) {
+    function markPresence(house) {
       counts[house]++;
       localStorage.setItem("counts", JSON.stringify(counts));
-      displayResults(section);
+      displayResults();
     }
 
-    function displayResults(section) {
-      const resultId = `${section}-result`;
-      document.getElementById(resultId).innerHTML = `${section.charAt(0).toUpperCase() + section.slice(1)}: ${counts[section.charAt(0).toUpperCase() + section.slice(1)]}`;
+    function displayResults() {
+      const result = document.getElementById("result");
+      result.innerHTML = `Presenças:<br>Clã: ${counts.Clã}<br>Tropa: ${counts.Tropa}<br>Esquadrão: ${counts.Esquadrão}`;
     }
 
     // Exibir resultados ao carregar a página
-    displayResults('top');
-    displayResults('middle');
-    displayResults('bottom');
+    displayResults();
   </script>
 </body>
 </html>
