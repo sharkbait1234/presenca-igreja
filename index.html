@@ -22,7 +22,7 @@
     }
 
     button {
-      padding: 20px;
+      padding: 0;
       margin: 10px;
       font-size: 1.5em;
       border: none;
@@ -30,35 +30,36 @@
       cursor: pointer;
       transition: background 0.3s;
       position: absolute;
-      background-color: rgba(255, 165, 0, 0.5); /* Laranja transparente */
-      color: white;
-      white-space: nowrap; /* Impede quebra de linha */
+      color: transparent; /* Não exibe texto */
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     button:hover {
-      background-color: rgba(255, 165, 0, 0.8);
+      opacity: 0.8; /* Opacidade ao passar o mouse */
     }
 
-    .house-btn {
-      background-color: rgba(255, 165, 0, 0.5); /* Fundo laranja e 50% transparente */
-      color: white;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    /* Posições dos botões */
     .tropa-btn {
+      background-color: rgba(0, 255, 0, 0.5); /* Verde 50% transparente */
+      width: 50px;
+      height: 50px;
       top: 20%; /* Terço superior */
       left: 35%; /* Move para a esquerda */
     }
 
     .clan-btn {
+      background-color: rgba(0, 0, 255, 0.5); /* Azul 50% transparente */
+      width: 50px;
+      height: 50px;
       top: 50%; /* Terço do meio */
       right: 20%; /* Move para a direita */
     }
 
     .esquadrao-btn {
+      background-color: rgba(255, 0, 0, 0.5); /* Vermelho 50% transparente */
+      width: 50px;
+      height: 50px;
       top: 80%; /* Terço inferior */
       left: 25%; /* Move para a esquerda */
     }
@@ -82,9 +83,9 @@
 <body>
 
   <div class="content">
-    <button class="house-btn tropa-btn" onclick="markPresence('Tropa')">Sou da Tropa</button>
-    <button class="house-btn clan-btn" onclick="markPresence('Clã')">Sou do Clã</button>
-    <button class="house-btn esquadrao-btn" onclick="markPresence('Esquadrão')">Sou do Esquadrão</button>
+    <button class="house-btn tropa-btn" onclick="markPresence('Tropa')"></button>
+    <button class="house-btn clan-btn" onclick="markPresence('Clã')"></button>
+    <button class="house-btn esquadrao-btn" onclick="markPresence('Esquadrão')"></button>
 
     <div id="result-tropa" class="result-tropa"></div>
     <div id="result-clan" class="result-clan"></div>
