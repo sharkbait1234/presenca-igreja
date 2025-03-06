@@ -6,29 +6,33 @@
   <title>Marcar Presença</title>
   <style>
     body {
-      background: url('background123.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: white;
-      text-align: center;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      height: 100vh;
       margin: 0;
-      padding-top: 80px; /* Espaço para o título */
+      font-family: Arial, sans-serif;
+      color: white;
     }
 
+    /* Header - título */
     h1 {
-      position: absolute;
+      position: fixed;
       top: 0;
       width: 100%;
       font-size: 3em;
       background: rgba(255, 165, 0, 0.8); /* Laranja com 80% de opacidade */
-      padding: 10px;
-      border-radius: 10px;
+      padding: 20px;
+      border-bottom: 3px solid #f29d29; /* Adicionando uma borda inferior */
       color: white;
+      text-align: center;
+      z-index: 1; /* Garantindo que o título fique acima de outros elementos */
+    }
+
+    /* Corpo da página - agora com espaço para o título */
+    .content {
+      background: url('background123.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      padding-top: 120px; /* Espaço para o header, logo abaixo do título */
+      min-height: 100vh; /* Para que a área da imagem ocupe a tela inteira */
     }
 
     button {
@@ -45,7 +49,7 @@
     }
 
     button:hover {
-      background-color: rgba(255, 165, 0, 0.8);
+      background-color: rgba(255, 165, 0, 0.9);
     }
 
     .house-btn {
@@ -86,17 +90,18 @@
   </style>
 </head>
 <body>
+
   <h1>Marque sua Presença</h1>
-  
-  <div>
+
+  <div class="content">
     <button class="house-btn tropa-btn" onclick="markPresence('Tropa')">Tropa</button>
     <button class="house-btn clan-btn" onclick="markPresence('Clã')">Clã</button>
     <button class="house-btn esquadrao-btn" onclick="markPresence('Esquadrão')">Esquadrão</button>
+
+    <div id="result-tropa" class="result-tropa"></div>
+    <div id="result-clan" class="result-clan"></div>
+    <div id="result-esquadrao" class="result-esquadrao"></div>
   </div>
-  
-  <div id="result-tropa" class="result-tropa"></div>
-  <div id="result-clan" class="result-clan"></div>
-  <div id="result-esquadrao" class="result-esquadrao"></div>
 
   <script>
     let counts = { Clã: 0, Tropa: 0, Esquadrão: 0 };
@@ -113,5 +118,6 @@
       document.getElementById("result-esquadrao").innerHTML = `Esquadrão: ${counts.Esquadrão}`;
     }
   </script>
+
 </body>
 </html>
