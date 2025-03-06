@@ -19,13 +19,18 @@
       margin: 0;
       transition: background 0.5s ease;
     }
+    
     h1 {
+      position: absolute;
+      top: 20px;
+      width: 100%;
       font-size: 3em;
-      margin-bottom: 20px;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.5); /* Transparência */
       padding: 10px;
       border-radius: 10px;
+      color: white;
     }
+    
     button {
       padding: 20px;
       margin: 10px;
@@ -34,44 +39,69 @@
       border-radius: 10px;
       cursor: pointer;
       transition: background 0.3s;
+      position: relative;
     }
+    
     button:hover {
       background-color: #4caf50;
     }
+    
     .house-btn {
       background-color: #444;
       color: white;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
-    #result {
-      margin-top: 30px;
+    
+    #result-clan, #result-tropa, #result-esquadrao {
+      position: absolute;
+      top: 0;
+      right: 0;
       font-size: 1.2em;
       background: rgba(0, 0, 0, 0.7);
-      padding: 10px;
+      padding: 5px;
       border-radius: 10px;
+      color: white;
+    }
+
+    /* Posições dos botões */
+    .tropa-btn {
+      top: 20%; /* Terço superior */
+    }
+    .clan-btn {
+      top: 50%; /* Terço do meio */
+    }
+    .esquadrao-btn {
+      top: 80%; /* Terço inferior */
     }
   </style>
 </head>
 <body>
   <h1>Marque sua Presença</h1>
   <div>
-    <button class="house-btn" onclick="markPresence('Clã', 'cla.jpg')">Clã</button>
-    <button class="house-btn" onclick="markPresence('Tropa', 'tropa.jpg')">Tropa</button>
-    <button class="house-btn" onclick="markPresence('Esquadrão', 'esquadrao.jpg')">Esquadrão</button>
+    <button class="house-btn tropa-btn" onclick="markPresence('Tropa')">Tropa</button>
+    <button class="house-btn clan-btn" onclick="markPresence('Clã')">Clã</button>
+    <button class="house-btn esquadrao-btn" onclick="markPresence('Esquadrão')">Esquadrão</button>
   </div>
-  <div id="result"></div>
+  
+  <div id="result-clan"></div>
+  <div id="result-tropa"></div>
+  <div id="result-esquadrao"></div>
 
   <script>
     let counts = { Clã: 0, Tropa: 0, Esquadrão: 0 };
 
-    function markPresence(house, image) {
+    function markPresence(house) {
       counts[house]++;
-      document.body.style.backgroundImage = `url('${image}')`;
       displayResults();
     }
 
     function displayResults() {
-      const result = document.getElementById("result");
-      result.innerHTML = `Presenças:<br>Clã: ${counts.Clã}<br>Tropa: ${counts.Tropa}<br>Esquadrão: ${counts.Esquadrão}`;
+      // Exibe os resultados em frente ao botão correspondente
+      document.getElementById("result-clan").innerHTML = `Clã: ${counts.Clã}`;
+      document.getElementById("result-tropa").innerHTML = `Tropa: ${counts.Tropa}`;
+      document.getElementById("result-esquadrao").innerHTML = `Esquadrão: ${counts.Esquadrão}`;
     }
   </script>
 </body>
