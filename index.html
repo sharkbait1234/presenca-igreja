@@ -73,17 +73,17 @@
       font-weight: bold;
     }
 
-    .result-tropa { top: 25%; left: 50%; transform: translateX(-50%); }
-    .result-clan { top: 55%; left: 50%; transform: translateX(-50%); }
-    .result-esquadrao { top: 85%; left: 50%; transform: translateX(-50%); }
+    .result-tropa { top: 25%; left: 25%; transform: translateX(-50%); }
+    .result-clan { top: 55%; left: 75%; transform: translateX(-50%); }
+    .result-esquadrao { top: 85%; left: 25%; transform: translateX(-50%); }
   </style>
 </head>
 <body>
 
   <div class="content">
-    <button class="house-btn tropa-btn" onclick="markPresence('Tropa')">Clique aqui se você faz parte da Tropa</button>
-    <button class="house-btn clan-btn" onclick="markPresence('Clã')">Clique aqui se você faz parte do Clã</button>
-    <button class="house-btn esquadrao-btn" onclick="markPresence('Esquadrão')">Clique aqui se você faz parte do Esquadrão</button>
+    <button class="house-btn tropa-btn" onclick="markPresence('Tropa')">Sou da Tropa</button>
+    <button class="house-btn clan-btn" onclick="markPresence('Clã')">Sou do Clã</button>
+    <button class="house-btn esquadrao-btn" onclick="markPresence('Esquadrão')">Sou do Esquadrão</button>
 
     <div id="result-tropa" class="result-tropa"></div>
     <div id="result-clan" class="result-clan"></div>
