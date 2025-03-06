@@ -6,7 +6,7 @@
   <title>Marcar Presença</title>
   <style>
     body {
-      background: url('background123.jpg') no-repeat center center fixed;
+      background: url('background.jpg') no-repeat center center fixed;
       background-size: cover;
       color: white;
       text-align: center;
@@ -14,14 +14,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       height: 100vh;
       margin: 0;
       transition: background 0.5s ease;
     }
     h1 {
       font-size: 3em;
-      margin-top: 20px;
+      margin-bottom: 20px;
       background: rgba(0, 0, 0, 0.7);
       padding: 10px;
       border-radius: 10px;
@@ -34,7 +34,6 @@
       border-radius: 10px;
       cursor: pointer;
       transition: background 0.3s;
-      width: 200px;
     }
     button:hover {
       background-color: #4caf50;
@@ -50,41 +49,23 @@
       padding: 10px;
       border-radius: 10px;
     }
-    .button-container {
-      position: absolute;
-      width: 100%;
-      display: flex;
-      justify-content: space-around;
-    }
-    .top-btn {
-      position: absolute;
-      top: 25%;
-    }
-    .middle-btn {
-      position: absolute;
-      top: 50%;
-    }
-    .bottom-btn {
-      position: absolute;
-      bottom: 25%;
-    }
   </style>
 </head>
 <body>
   <h1>Marque sua Presença</h1>
-  <div class="button-container">
-    <button class="house-btn top-btn" onclick="markPresence('Clã')">Clã</button>
-    <button class="house-btn middle-btn" onclick="markPresence('Tropa')">Tropa</button>
-    <button class="house-btn bottom-btn" onclick="markPresence('Esquadrão')">Esquadrão</button>
+  <div>
+    <button class="house-btn" onclick="markPresence('Clã', 'cla.jpg')">Clã</button>
+    <button class="house-btn" onclick="markPresence('Tropa', 'tropa.jpg')">Tropa</button>
+    <button class="house-btn" onclick="markPresence('Esquadrão', 'esquadrao.jpg')">Esquadrão</button>
   </div>
   <div id="result"></div>
 
   <script>
-    let counts = JSON.parse(localStorage.getItem("counts")) || { Clã: 0, Tropa: 0, Esquadrão: 0 };
+    let counts = { Clã: 0, Tropa: 0, Esquadrão: 0 };
 
-    function markPresence(house) {
+    function markPresence(house, image) {
       counts[house]++;
-      localStorage.setItem("counts", JSON.stringify(counts));
+      document.body.style.backgroundImage = `url('${image}')`;
       displayResults();
     }
 
@@ -92,9 +73,6 @@
       const result = document.getElementById("result");
       result.innerHTML = `Presenças:<br>Clã: ${counts.Clã}<br>Tropa: ${counts.Tropa}<br>Esquadrão: ${counts.Esquadrão}`;
     }
-
-    // Exibir resultados ao carregar a página
-    displayResults();
   </script>
 </body>
 </html>
