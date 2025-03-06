@@ -6,7 +6,7 @@
   <title>Marcar Presença</title>
   <style>
     body {
-      background: url('background.jpg’) no-repeat center center fixed;
+      background: url('background.jpg') no-repeat center center fixed;
       background-size: cover;
       color: white;
       text-align: center;
@@ -54,9 +54,9 @@
 <body>
   <h1>Marque sua Presença</h1>
   <div>
-    <button class="house-btn" onclick="markPresence(‘Clã, ‘clã.jpg’)”>Clã</button>
-    <button class="house-btn" onclick="markPresence(‘Tropa, ‘tropa.jpg’)”>Tropa</button>
-    <button class="house-btn" onclick="markPresence(‘Esquadrão, ‘esquadrao.jpg’)”>Esquadrão</button>
+    <button class="house-btn" onclick="markPresence('Clã', 'cla.jpg')">Clã</button>
+    <button class="house-btn" onclick="markPresence('Tropa', 'tropa.jpg')">Tropa</button>
+    <button class="house-btn" onclick="markPresence('Esquadrão', 'esquadrao.jpg')">Esquadrão</button>
   </div>
   <div id="result"></div>
 
@@ -65,13 +65,13 @@
 
     function markPresence(house, image) {
       counts[house]++;
-      document.body.style.backgroundImage = url('${image}');
+      document.body.style.backgroundImage = `url('${image}')`;
       displayResults();
     }
 
     function displayResults() {
       const result = document.getElementById("result");
-      result.innerHTML = Presenças:<br>Clã: ${counts.Clã}<br>Tropa: ${counts.Tropa}<br>Esquadrão: ${counts.Esquadrão};
+      result.innerHTML = `Presenças:<br>Clã: ${counts.Clã}<br>Tropa: ${counts.Tropa}<br>Esquadrão: ${counts.Esquadrão}`;
     }
   </script>
 </body>
