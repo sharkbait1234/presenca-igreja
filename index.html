@@ -14,22 +14,62 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       height: 100vh;
       margin: 0;
+      padding-top: 80px; /* Espaço para o título */
     }
-    
+
     h1 {
       position: absolute;
-      top: 20px;
+      top: 0;
       width: 100%;
       font-size: 3em;
-      background: rgba(0, 0, 0, 0.5); /* Transparência */
+      background: rgba(255, 165, 0, 0.8); /* Laranja com 80% de opacidade */
       padding: 10px;
       border-radius: 10px;
       color: white;
     }
 
+    button {
+      padding: 20px;
+      margin: 10px;
+      font-size: 1.5em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+      position: relative;
+      background-color: rgba(255, 165, 0, 0.5); /* Laranja transparente */
+      color: white;
+    }
+
+    button:hover {
+      background-color: rgba(255, 165, 0, 0.8);
+    }
+
+    .house-btn {
+      background-color: rgba(255, 165, 0, 0.5); /* Fundo laranja e 50% transparente */
+      color: white;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Posições dos botões */
+    .tropa-btn {
+      top: 20%; /* Terço superior */
+    }
+
+    .clan-btn {
+      top: 50%; /* Terço do meio */
+    }
+
+    .esquadrao-btn {
+      top: 80%; /* Terço inferior */
+    }
+
+    /* Estilos para os resultados */
     #result-clan, #result-tropa, #result-esquadrao {
       position: absolute;
       font-size: 1.2em;
@@ -37,36 +77,29 @@
       padding: 5px;
       border-radius: 10px;
       color: white;
+      font-weight: bold;
     }
 
-    .result-tropa { top: 10%; left: 10%; }
-    .result-clan { top: 50%; left: 10%; }
-    .result-esquadrao { top: 80%; left: 10%; }
-
-    /* Tamanho do mapa */
-    img {
-      width: 100%;
-      height: 100%;
-    }
+    .result-tropa { top: 25%; left: 50%; transform: translateX(-50%); }
+    .result-clan { top: 55%; left: 50%; transform: translateX(-50%); }
+    .result-esquadrao { top: 85%; left: 50%; transform: translateX(-50%); }
   </style>
 </head>
 <body>
   <h1>Marque sua Presença</h1>
+  
   <div>
-    <img src="background123.jpg" alt="Imagem de fundo" usemap="#areaMap">
-    <map name="areaMap">
-      <area shape="rect" coords="0,0,100%,33%" alt="Tropa" href="#" onclick="markPresence('Tropa')">
-      <area shape="rect" coords="0,33%,100%,66%" alt="Clã" href="#" onclick="markPresence('Clã')">
-      <area shape="rect" coords="0,66%,100%,100%" alt="Esquadrão" href="#" onclick="markPresence('Esquadrão')">
-    </map>
+    <button class="house-btn tropa-btn" onclick="markPresence('Tropa')">Tropa</button>
+    <button class="house-btn clan-btn" onclick="markPresence('Clã')">Clã</button>
+    <button class="house-btn esquadrao-btn" onclick="markPresence('Esquadrão')">Esquadrão</button>
   </div>
-
+  
   <div id="result-tropa" class="result-tropa"></div>
   <div id="result-clan" class="result-clan"></div>
   <div id="result-esquadrao" class="result-esquadrao"></div>
 
   <script>
-    let counts = { Tropa: 0, Clã: 0, Esquadrão: 0 };
+    let counts = { Clã: 0, Tropa: 0, Esquadrão: 0 };
 
     function markPresence(house) {
       counts[house]++;
@@ -74,7 +107,7 @@
     }
 
     function displayResults() {
-      // Exibe os resultados nas posições corretas
+      // Exibe os resultados próximos ao botão correspondente
       document.getElementById("result-tropa").innerHTML = `Tropa: ${counts.Tropa}`;
       document.getElementById("result-clan").innerHTML = `Clã: ${counts.Clã}`;
       document.getElementById("result-esquadrao").innerHTML = `Esquadrão: ${counts.Esquadrão}`;
