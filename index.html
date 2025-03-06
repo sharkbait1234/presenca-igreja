@@ -17,7 +17,6 @@
       justify-content: center;
       height: 100vh;
       margin: 0;
-      transition: background 0.5s ease;
     }
     
     h1 {
@@ -30,34 +29,9 @@
       border-radius: 10px;
       color: white;
     }
-    
-    button {
-      padding: 20px;
-      margin: 10px;
-      font-size: 1.5em;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 0.3s;
-      position: relative;
-    }
-    
-    button:hover {
-      background-color: #4caf50;
-    }
-    
-    .house-btn {
-      background-color: #444;
-      color: white;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    
+
     #result-clan, #result-tropa, #result-esquadrao {
       position: absolute;
-      top: 0;
-      right: 0;
       font-size: 1.2em;
       background: rgba(0, 0, 0, 0.7);
       padding: 5px;
@@ -65,32 +39,34 @@
       color: white;
     }
 
-    /* Posições dos botões */
-    .tropa-btn {
-      top: 20%; /* Terço superior */
-    }
-    .clan-btn {
-      top: 50%; /* Terço do meio */
-    }
-    .esquadrao-btn {
-      top: 80%; /* Terço inferior */
+    .result-tropa { top: 10%; left: 10%; }
+    .result-clan { top: 50%; left: 10%; }
+    .result-esquadrao { top: 80%; left: 10%; }
+
+    /* Tamanho do mapa */
+    img {
+      width: 100%;
+      height: 100%;
     }
   </style>
 </head>
 <body>
   <h1>Marque sua Presença</h1>
   <div>
-    <button class="house-btn tropa-btn" onclick="markPresence('Tropa')">Tropa</button>
-    <button class="house-btn clan-btn" onclick="markPresence('Clã')">Clã</button>
-    <button class="house-btn esquadrao-btn" onclick="markPresence('Esquadrão')">Esquadrão</button>
+    <img src="background123.jpg" alt="Imagem de fundo" usemap="#areaMap">
+    <map name="areaMap">
+      <area shape="rect" coords="0,0,100%,33%" alt="Tropa" href="#" onclick="markPresence('Tropa')">
+      <area shape="rect" coords="0,33%,100%,66%" alt="Clã" href="#" onclick="markPresence('Clã')">
+      <area shape="rect" coords="0,66%,100%,100%" alt="Esquadrão" href="#" onclick="markPresence('Esquadrão')">
+    </map>
   </div>
-  
-  <div id="result-clan"></div>
-  <div id="result-tropa"></div>
-  <div id="result-esquadrao"></div>
+
+  <div id="result-tropa" class="result-tropa"></div>
+  <div id="result-clan" class="result-clan"></div>
+  <div id="result-esquadrao" class="result-esquadrao"></div>
 
   <script>
-    let counts = { Clã: 0, Tropa: 0, Esquadrão: 0 };
+    let counts = { Tropa: 0, Clã: 0, Esquadrão: 0 };
 
     function markPresence(house) {
       counts[house]++;
@@ -98,9 +74,9 @@
     }
 
     function displayResults() {
-      // Exibe os resultados em frente ao botão correspondente
-      document.getElementById("result-clan").innerHTML = `Clã: ${counts.Clã}`;
+      // Exibe os resultados nas posições corretas
       document.getElementById("result-tropa").innerHTML = `Tropa: ${counts.Tropa}`;
+      document.getElementById("result-clan").innerHTML = `Clã: ${counts.Clã}`;
       document.getElementById("result-esquadrao").innerHTML = `Esquadrão: ${counts.Esquadrão}`;
     }
   </script>
