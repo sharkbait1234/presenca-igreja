@@ -14,14 +14,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       height: 100vh;
       margin: 0;
       transition: background 0.5s ease;
     }
     h1 {
       font-size: 3em;
-      margin-bottom: 20px;
+      margin-top: 20px;
       background: rgba(0, 0, 0, 0.7);
       padding: 10px;
       border-radius: 10px;
@@ -34,6 +34,7 @@
       border-radius: 10px;
       cursor: pointer;
       transition: background 0.3s;
+      width: 200px;
     }
     button:hover {
       background-color: #4caf50;
@@ -49,23 +50,41 @@
       padding: 10px;
       border-radius: 10px;
     }
+    .button-container {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+    .top-btn {
+      position: absolute;
+      top: 25%;
+    }
+    .middle-btn {
+      position: absolute;
+      top: 50%;
+    }
+    .bottom-btn {
+      position: absolute;
+      bottom: 25%;
+    }
   </style>
 </head>
 <body>
   <h1>Marque sua Presença</h1>
-  <div>
-    <button class="house-btn" onclick="markPresence('Clã', 'cla.jpg')">Clã</button>
-    <button class="house-btn" onclick="markPresence('Tropa', 'tropa.jpg')">Tropa</button>
-    <button class="house-btn" onclick="markPresence('Esquadrão', 'esquadrao.jpg')">Esquadrão</button>
+  <div class="button-container">
+    <button class="house-btn top-btn" onclick="markPresence('Clã')">Clã</button>
+    <button class="house-btn middle-btn" onclick="markPresence('Tropa')">Tropa</button>
+    <button class="house-btn bottom-btn" onclick="markPresence('Esquadrão')">Esquadrão</button>
   </div>
   <div id="result"></div>
 
   <script>
-    let counts = { Clã: 0, Tropa: 0, Esquadrão: 0 };
+    let counts = JSON.parse(localStorage.getItem("counts")) || { Clã: 0, Tropa: 0, Esquadrão: 0 };
 
-    function markPresence(house, image) {
+    function markPresence(house) {
       counts[house]++;
-      document.body.style.backgroundImage = `url('${image}')`;
+      localStorage.setItem("counts", JSON.stringify(counts));
       displayResults();
     }
 
@@ -73,6 +92,9 @@
       const result = document.getElementById("result");
       result.innerHTML = `Presenças:<br>Clã: ${counts.Clã}<br>Tropa: ${counts.Tropa}<br>Esquadrão: ${counts.Esquadrão}`;
     }
+
+    // Exibir resultados ao carregar a página
+    displayResults();
   </script>
 </body>
 </html>
