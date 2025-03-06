@@ -13,8 +13,6 @@
 
     /* Header - título */
     h1 {
-      position: fixed;
-      top: 0;
       width: 100%;
       font-size: 3em;
       background: rgba(255, 165, 0, 0.8); /* Laranja com 80% de opacidade */
@@ -23,6 +21,7 @@
       color: white;
       text-align: center;
       z-index: 1; /* Garantindo que o título fique acima de outros elementos */
+      position: relative; /* Corrige sobreposição da imagem */
     }
 
     /* Corpo da página - agora com espaço para o título */
@@ -33,6 +32,7 @@
       text-align: center;
       padding-top: 120px; /* Espaço para o header, logo abaixo do título */
       min-height: 100vh; /* Para que a área da imagem ocupe a tela inteira */
+      position: relative; /* Garantir que o conteúdo venha após o título */
     }
 
     button {
@@ -43,34 +43,34 @@
       border-radius: 10px;
       cursor: pointer;
       transition: background 0.3s;
-      position: relative;
+      position: absolute;
       background-color: rgba(255, 165, 0, 0.5); /* Laranja transparente */
       color: white;
     }
 
     button:hover {
-      background-color: rgba(255, 165, 0, 0.9);
+      background-color: rgba(255, 165, 0, 0.8);
     }
 
     .house-btn {
       background-color: rgba(255, 165, 0, 0.5); /* Fundo laranja e 50% transparente */
       color: white;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
     }
 
     /* Posições dos botões */
     .tropa-btn {
       top: 20%; /* Terço superior */
+      left: 20%; /* Move para a esquerda */
     }
 
     .clan-btn {
       top: 50%; /* Terço do meio */
+      right: 20%; /* Move para a direita */
     }
 
     .esquadrao-btn {
       top: 80%; /* Terço inferior */
+      left: 20%; /* Move para a esquerda */
     }
 
     /* Estilos para os resultados */
@@ -84,9 +84,9 @@
       font-weight: bold;
     }
 
-    .result-tropa { top: 25%; left: 50%; transform: translateX(-50%); }
-    .result-clan { top: 55%; left: 50%; transform: translateX(-50%); }
-    .result-esquadrao { top: 85%; left: 50%; transform: translateX(-50%); }
+    .result-tropa { top: 25%; left: 20%; }
+    .result-clan { top: 55%; right: 20%; }
+    .result-esquadrao { top: 85%; left: 20%; }
   </style>
 </head>
 <body>
